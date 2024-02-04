@@ -1,0 +1,136 @@
+<div class="container-fluid">
+
+    <div class="loin mt-3">
+        <!-- <h2 class="text-left mt-4">Registration Form</h2> -->
+        <div class="login">
+            <div class="agile-form">
+                <h2 class="text-left">Registration Form</h2>
+                <form #passwordForm="ngForm" [formGroup]="registerForm" (ngSubmit)="onSignup(registerForm.value)">
+                    <!-- Section 1 -->
+                    <section *ngIf="currentSection === 1">
+                        <ul class="field-list">
+                            <li>
+                                <label class="form-label">FullName</label>
+                                <div class="form-group">
+                                    <input type="text" formControlName="fullname" placeholder="Enter Full Name"
+                                        required>
+                                </div>
+                            </li>
+
+                            <li>
+                                <label class="form-label">Email</label>
+                                <div class="form-group">
+                                    <input type="email" formControlName="email" placeholder="Enter Email" required>
+                                </div>
+                            </li>
+
+                            <li>
+                                <label class="form-label">Phone Number</label>
+                                <div class="form-group">
+                                    <input type="text" formControlName="phone" placeholder="Enter PhoneNumber" required>
+                                </div>
+                            </li>
+
+                            <li>
+                                <label class="form-label">Date of Birth</label>
+                                <div class="form-group">
+                                    <input type="date" class="dob" formControlName="dob"
+                                        placeholder="Enter Date of Birth" required>
+                                </div>
+                            </li>
+
+                            <li>
+                                <label class="form-label">UserName</label>
+                                <div class="form-group">
+                                    <input type="text" formControlName="username" placeholder="Enter User Name"
+                                        required>
+                                </div>
+                            </li>
+
+                            <li>
+                                <hr>
+                                <h3 style="color:white">First Password</h3>
+                                <div class="form-group">
+                                    <input type="text" formControlName="password1" placeholder="Enter First Password">
+                                    <div class="red-error"
+                                        *ngIf="registerForm.get('password1')?.touched && registerForm.get('password1')?.hasError('required')">
+                                        password1 required</div>
+                                    <div class="red-error"
+                                        *ngIf="registerForm.controls['password1'].errors?.['minlength']">password1 is
+                                        minimum 8 characters</div>
+                                    <div class="red-error"
+                                        *ngIf="registerForm.controls['password1'].errors?.['pattern']">password1 must be
+                                        contain upper & lower & number and symbol</div>
+                                </div>
+                            </li>
+
+                        </ul>
+                        <button class="nextBtn" mat-raised-button style="float:right" type="button"
+                            (click)="nextSection()">Next<i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                    </section>
+                    <!-- Section 2 -->
+                    <section *ngIf="currentSection === 2">
+                        <div class="password2 mb-4">
+                            <h3 style="color:white">Second Password</h3>
+                            <div class="form-group">
+                                <label for="question1">Question 1</label>
+                                <select id="question1" formControlName="question1">
+                                    <option value="">Choose a question</option>
+                                    <option *ngFor="let question of questionList" [value]="question.viewValue">
+                                        {{question.value}}.{{question.viewValue}}
+                                    </option>
+                                </select>
+                                <input type="text" formControlName="answer1" placeholder="Answer">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="question2">Question 2</label>
+                                <select id="question2" formControlName="question2">
+                                    <option value="">Choose a question</option>
+                                    <option *ngFor="let question of questionList" [value]="question.viewValue">
+                                        {{question.viewValue}}
+                                    </option>
+                                </select>
+                                <input type="text" formControlName="answer2" placeholder="Answer">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="customQuestion">Custom Question</label>
+                                <input type="text" id="customQuestion" formControlName="customQuestion"
+                                    placeholder="Enter custom question">
+                                <input type="text" formControlName="customAnswer" placeholder="Answer">
+                            </div>
+                        </div>
+                        <button class="prevBtn" mat-raised-button type="button" (click)="previousSection()"><i
+                                class="fa fa-arrow-left" aria-hidden="true"></i>Previous</button>
+                        <button class="nextBtn" mat-raised-button style="float:right" type="button"
+                            (click)="nextSection()">Next<i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+
+                    </section>
+                    <!-- Section 3 -->
+                    <section *ngIf="currentSection === 3">
+                        <h3 style="color:white">Third Password</h3>
+
+                        <div class="image-grid" *ngIf="images">
+                            <div class="image-item" *ngFor="let image of images">
+                                <label>
+                                    <input type="radio" [value]="image.url" formControlName="selectedImage">
+                                    <img src="{{image.url}}" class="slimage" style="width: 150px;height: 140px;"
+                                        alt="{{image.id}}">
+                                </label>
+                            </div>
+                        </div>
+                        <button class="prevBtn" mat-raised-button type="button" (click)="previousSection()"><i
+                                class="fa fa-arrow-left" aria-hidden="true"></i>Previous</button>
+                    </section>
+
+                    <div class="submit-btns mt-2">
+                        <button style="left:28%" [disabled]="!registerForm.valid" mat-raised-button color="primary"
+                            type="submit">Signup</button>
+                    </div>
+                </form>
+                <button style="left:48%; margin-top: -11.5%;" mat-raised-button color="accent" (click)="onClear()">Clear</button>
+            </div>
+        </div>
+    </div>
+</div>

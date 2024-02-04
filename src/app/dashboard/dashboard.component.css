@@ -1,0 +1,64 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background: white;
+    border: 1px solid aliceblue;
+    box-shadow: 8px 8px 6px -6px #0d6efd69;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 16px;
+    border-bottom: 1px solid #ddd;
+    text-transform: capitalize;
+}
+
+thead{
+    background-color: antiquewhite !important;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover{
+    cursor: pointer;
+}
+
+.add {
+    background: #198754 !important;
+    color: white !important;
+}
+
+.time {
+    margin-left: 6px;
+}
+.print{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+i{
+    cursor: pointer;
+}
+
+@media print {
+    table {
+        font-size: 12px;
+    }
+
+    h1 {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    button {
+        display: none;
+    }
+
+    td,
+    th {
+        border: 1px solid black;
+        padding: 6px;
+    }
+}

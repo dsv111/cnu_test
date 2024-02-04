@@ -1,0 +1,65 @@
+<div class="container-fluid">
+    <div class="container">
+       
+            <h2 class="">Diabetes Entry Data</h2>
+            <div class="daibetes-entry card p-4">
+
+            <form [formGroup]="bloodSugarForm">
+                <div class="form-group">
+                    <label for="date">Select the Date</label>
+                    <input type="date" id="date" formControlName="date" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="fastingBloodSugar">Blood sugar level Before breakfast</label>
+                    <div class="singleRow">
+                        <input type="time" formControlName="time1">
+                       
+                        <input type="number" id="fastingBloodSugar" formControlName="fastingBloodSugar"
+                            class="form-control" required>
+                    </div>
+
+                    <div
+                        *ngIf="bloodSugarForm?.get('fastingBloodSugar')?.invalid && (bloodSugarForm?.get('fastingBloodSugar')?.dirty || bloodSugarForm?.get('fastingBloodSugar')?.touched)">
+                        <small class="form-text text-danger">Please enter a valid fasting blood sugar level.</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="breakfast">What they ate for breakfast</label>
+                    <div class="singleRow">
+                        <input type="time" formControlName="time2">
+                        <input type="text" id="breakfast" appNocopy formControlName="breakfast" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lunch">Lunch menu</label>
+                    <div class="singleRow">
+                        <input type="time" formControlName="time3">
+                        <input type="text" id="lunch" formControlName="lunch" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="dinner">Dinner Menu</label>
+                    <div class="singleRow">
+                        <input type="time" formControlName="time4">
+                        <input type="text" id="dinner" formControlName="dinner" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="postDinnerBloodSugar">Blood sugar level after 2 hours of eating dinner</label>
+                    <div class="singleRow">
+                        <input type="time" formControlName="time5">
+                        <input type="number" id="postDinnerBloodSugar" formControlName="postDinnerBloodSugar"
+                            class="form-control" required>
+                    </div>
+                </div>
+                <div class="submit-btns mt-2">
+                    <button type="submit" mat-raised-button color="primary" [disabled]="!bloodSugarForm.valid || !bloodSugarForm.value.date || !bloodSugarForm.value.fastingBloodSugar || !bloodSugarForm.value.breakfast || !bloodSugarForm.value.lunch || !bloodSugarForm.value.dinner || !bloodSugarForm.value.postDinnerBloodSugar"
+                    (click)="submitForm(bloodSugarForm.value)">Submit</button>
+                    <button mat-raised-button color="accent" style="margin-left:1rem" (click)="clearForm()">Clear</button>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+</div>

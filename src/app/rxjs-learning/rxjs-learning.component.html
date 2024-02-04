@@ -1,0 +1,56 @@
+<p>rxjs-learning works!</p>
+<div class="card">
+    <h1>message::::::{{receivedMsg}}</h1>
+
+</div>
+<div>
+    <h3>Message Display Component</h3>
+    <p>{{ receivedMessage }}</p>
+  </div>
+<!-- <div class="image-row">
+    <img *ngFor="let imageUrl of productsList" [src]="imageUrl" alt="Image">
+  </div> -->
+<div class="card" *ngFor="let item of testResult">
+    <h3>{{item.user}}:: {{getCount(item.user)}}</h3>
+
+    <!-- <ul>
+       
+        <li *ngFor="let result of testResult">{{result.user}}'s count :<b> {{filteredData(result.user)}}</b></li>
+        <label for="userName">Enter User Name:</label>
+        <input type="text" [(ngModel)]="searchUserName" >
+        <div *ngIf="searchUserName">
+            <p>{{searchUserName}}'count : {{filteredData(searchUserName)}}</p>
+        </div>
+    </ul> -->
+</div>
+
+<!-- <div class="card">  {{result}}
+<div class="img-block" *ngFor="let img of productsList">
+    <img [src]="img" alt="img" height="200" width="200">
+    </div>
+    </div> -->
+<!-- <div class="container card">
+    <div class="staticc">Static Positioning </div>
+    <div class="relativee">Relative Positioning</div>
+    <div class="absolutee">Absolute Positioning</div>
+    <div class="fixed">Fixed Positioning</div>
+    <div class="sticky">Sticky Positioning</div>
+    <div class="static">Static Positioning</div>
+    <div class="relative">Relative Positioning</div>
+    <div class="absolute">Absolute Positioning</div>
+    <div class="fixed">Fixed Positioning</div>
+    <div class="sticky">Sticky Positioning</div>
+    <div class="static">Static Positioning</div>
+    <div class="relative">Relative Positioning</div>
+    <div class="absolute">Absolute Positioning</div>
+    <div class="fixed">Fixed Positioning</div>
+    <div class="sticky">Sticky Positioning</div>
+    <div class="static">Static Positioning</div>
+    <div class="relative">Relative Positioning</div>
+    <div class="absolute">Absolute Positioning</div>
+    <div class="fixed">Fixed Positioning</div>
+    <div class="sticky">Sticky Positioning</div>
+    
+    <div>{{result}}</div>
+    <button class="button" type="button"  (click)="onSubmit()">click</button>
+</div> -->

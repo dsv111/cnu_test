@@ -1,0 +1,57 @@
+.navbar-brand {
+    text-shadow: 2px 1px 1px #2d2877bf;
+    font-size: x-large;
+    font-weight: 500;
+    color: #0d6efd;
+}
+
+.profile {
+    position: relative;
+    cursor: pointer;
+}
+.fa-user {
+    border: 1px solid red;
+    padding: 9px;
+    border-radius: 50%;
+    background: #0d6efd;
+    color: white;
+}
+.profile-card {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 150px;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* display: none; */
+  }
+  
+  .show-card {
+    display: block !important;
+  }
+
+img {
+    border: 1px solid hsl(353, 100%, 50%);
+    padding: 3px;
+    border-radius: 30px;
+    margin-right: 0.5rem;
+}
+
+.nav-link {
+    color: black;
+}
+
+.nav-link:hover {
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+header {
+    box-shadow: 0 8px 6px -6px  #212529;
+    /* background: #dee2e6; */
+    background: url('../../assets/headbanner1.jpg');
+    background-repeat: round;
+    background: border-box;
+}
+

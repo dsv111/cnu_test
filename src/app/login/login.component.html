@@ -1,0 +1,158 @@
+<div class="container-fluid">
+    <div class="container">
+
+        <div class="form-1">
+            <h2>Form-1</h2>
+            <form [formGroup]="sampleForm">
+
+            </form>
+        </div>
+        <div class="login">
+            <form  [formGroup]="loginForm" (ngSubmit)="login()" autocomplete="off">
+                <h2 class="">Login</h2>
+
+
+               <div class="block p-2 pt-4">
+                <div class="form-group">
+                    <!-- <label>User Name : </label> -->
+                    <input type="text" class="form-control" formControlName="username" placeholder="Enter UserName">
+                    <div *ngIf="errMsg1" class="red-error">Username is wrong</div>
+                </div>
+                <div class="form-group">
+                    <select class="form-select" (change)="handleOptionChange($event)">
+                        <option value=""> Choose Password Method</option>
+                        <option value="entry-form">1. First Password</option>
+                        <option value="dashboard">2. Second Password</option>
+                        <option value="option3">3. Third Password</option>
+                        <option value="option4">4. All</option>
+                      </select>
+                      
+                </div>
+                <!-- first password  -->
+                <div *ngIf="isPassword1" class="form-group">
+                    <label>First Password : </label>
+                    <input type="text" class="form-control" formControlName="password">
+                    <div *ngIf="errMsg" class="red-error">Enter correct Password</div>
+                </div>
+
+                <!-- second password  -->
+                <div *ngIf="isPassword2" class="form-group">
+                    <label>Second Password : </label><br>
+                    <select class="form-select" id="question" formControlName="question" (change)="loadQ()">
+                        <option value="">Select a question</option>
+                        <option *ngFor="let question of questionList;let i=index" [value]="question.value">
+                            {{question.value}}
+                        </option>
+                    </select>
+                    <input type="text" class="form-control" formControlName="answer" placeholder="Answer">
+                    <div *ngIf="errMsg" class="red-error">Choose correct answer</div>
+                </div>
+
+                <!-- third password  -->
+                <div *ngIf="isPassword3" class="form-group">
+                    <label>Third Password :</label>
+                    <br>
+                    <!-- Button trigger modal
+                    <button type="button" class="form-select " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <span style="float: left;">Select your Pic</span>
+                    </button> -->
+                    <div *ngIf="errMsg" class="red-error">Choose correct image</div>
+
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                          <!-- <h2 class="accordion-header" id="headingOne"> -->
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                Select your Pic
+                            </button>
+                          <!-- </h2> -->
+                          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+                            <div class="accordion-body">
+                                <h4 class="modal-title" id="exampleModalLabel">Third Password</h4>
+                                <div class="image-grid" *ngIf="images">
+                                    <div class="image-item" *ngFor="let image of images">
+                                        <label>
+                                            <input type="radio" [value]="image.url" formControlName="selectedImage"
+                                                (change)="onRadioChange()">
+                                            <img src="{{image.url}}" class="slimage"
+                                                style="width: 120px;height: 100px;" alt="{{image.id}}">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="exampleModalLabel">Password3</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="image-grid" *ngIf="images">
+                                        <div class="image-item" *ngFor="let image of images">
+                                            <label>
+                                                <input type="radio" [value]="image.url" formControlName="selectedImage"
+                                                    (change)="onRadioChange()">
+                                                <img src="{{image.url}}" class="slimage"
+                                                    style="width: 150px;height: 100px;" alt="{{image.id}}">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" [disabled]="submitDisabled" class="btn btn-primary"
+                                        data-bs-dismiss="modal">Next</button>
+                                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="forgot-password" data-bs-toggle="modal" data-bs-target="#exampleModal2"
+                    (click)="tempReset()">Forgot
+                    Password?</a>
+                <a href="#" class="forgot-password" routerLink="/changepwds">Change Three Passwords?</a>
+                <a href="#" class="forgot-password" routerLink="/signup">new User? Create an account</a>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="exampleModalLabel">First Password</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                    (click)="loginRefresh()"></button>
+                            </div>
+                            <div *ngIf="!isTemp" class="modal-body">
+                                <input class="form-control" style="width:100%;border: 2px solid #4e6a8582;color: grey;" formControlName="tempemail"
+                                    placeholder="Enter your register mail address here.">
+                                <button type="button" mat-raised-button color="primary" class="mt-2" style="margin-left:11rem;"
+                                    (click)="sendEmail()">Send</button>
+                            </div>
+                            <div *ngIf="isTemp" class="modal-footer">
+                                <div class="modal-body">
+                                    <label>You can login with the below temporary password: </label>
+                                    <div class="card p-4">
+                                        <div class="text-center">{{randPassword}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="log-btn mt-2 text-center">
+                    <button mat-raised-button class="login-btn" color="primary">Login</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
